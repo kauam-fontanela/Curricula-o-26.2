@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A Aventura das Letras</title>
+  <meta name="description" content="Jogo educativo para crianças de 5 a 6 anos: comparações, espaço, números, cores, animais, sons, letras e atenção.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦉</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body>
+  <div class="sky" aria-hidden="true">
+    <span class="cloud c1"></span><span class="cloud c2"></span><span class="cloud c3"></span>
+    <span class="hill h1"></span><span class="hill h2"></span>
+  </div>
+
+  <main id="app">
+    <!-- ========== INÍCIO ========== -->
+    <section id="tela-inicio" class="tela ativa" aria-labelledby="titulo-jogo">
+      <div class="inicio-card">
+        <div class="logo-mascote" aria-hidden="true">🦉</div>
+        <p class="pequeno">Olá, amiguinho! Eu sou a Lulu!</p>
+        <h1 id="titulo-jogo" class="so-leitor">A Aventura das Letras</h1>
+        <img class="logo-pergaminho" src="assets/logo.png?v=2" alt="" aria-hidden="true" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div class="titulo-reserva" aria-hidden="true">A Aventura<br>das Letras</div>
+        <p class="sub">Vamos brincar, aprender e ganhar estrelas?</p>
+        <div class="botoes-inicio">
+          <button class="btn btn-grande btn-verde" id="btn-jogar"><span class="ic">▶</span> <span id="txt-jogar">Jogar</span></button>
+          <button class="btn btn-medio btn-claro" id="btn-recomecar" hidden>🔁 Começar de novo</button>
+          <button class="btn btn-medio btn-claro" id="btn-creditos">⭐ Créditos</button>
+        </div>
+        <p class="dica-inicio">Toque nos botões e nas figuras. Ninguém erra aqui: é só tentar de novo! 💛</p>
+        <button class="link-adulto" id="btn-adulto-inicio">👩‍🏫 Área do adulto</button>
+      </div>
+    </section>
+
+
+    <!-- ========== CRÉDITOS ========== -->
+    <section id="tela-creditos" class="tela" aria-labelledby="titulo-creditos">
+      <h2 id="titulo-creditos" class="creditos-titulo">Créditos</h2>
+      <ul class="creditos-caixa">
+        <li>Pedro Frutuoso – Design</li>
+        <li>Jhonathan Werick – Conteúdo</li>
+        <li>Kauam Pacheco – FrontEnd</li>
+        <li>Gabriel Pinotti – Organização</li>
+        <li>Victor Lopes – FrontEnd</li>
+      </ul>
+      <p class="creditos-dica">clique em qualquer lugar para voltar</p>
+    </section>
+
+    <!-- ========== MAPA ========== -->
+    <section id="tela-mapa" class="tela" aria-labelledby="titulo-mapa">
+      <header class="topo">
+        <button class="btn btn-pequeno btn-claro" data-acao="inicio" aria-label="Voltar ao início">🏠</button>
+        <h2 id="titulo-mapa">Escolha onde explorar!</h2>
+        <button class="btn btn-pequeno btn-claro btn-som" aria-label="Ligar ou desligar o som" title="Som">🔊</button>
+      </header>
+      <div class="mapa-conteudo">
+        <div class="mascote-linha">
+          <div class="mascote" aria-hidden="true">🦉</div>
+          <div class="balao" id="balao-mapa" role="status">Toque em um lugar para começar!</div>
+        </div>
+        <ol class="trilha" id="trilha"></ol>
+        <div class="mapa-rodape">
+          <div class="total-estrelas" id="total-estrelas" aria-live="polite">⭐ 0 / 40</div>
+          <button class="btn btn-grande btn-amarelo" id="btn-premio" hidden>🏆 Ver meu prêmio!</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PERGUNTA ========== -->
+    <section id="tela-pergunta" class="tela" aria-label="Pergunta">
+      <header class="topo">
+        <button class="btn btn-pequeno btn-claro" data-acao="mapa" aria-label="Voltar ao mapa">🗺️ <span class="so-grande">Mapa</span></button>
+        <div class="progresso">
+          <div class="mundo-nome" id="mundo-nome"></div>
+          <div class="pontinhos" id="pontinhos" aria-hidden="true"></div>
+        </div>
+        <button class="btn btn-pequeno btn-claro btn-som" aria-label="Ligar ou desligar o som" title="Som">🔊</button>
+      </header>
+
+      <div class="pergunta-corpo">
+        <div class="cartao-pergunta">
+          <div class="linha-enunciado">
+            <h2 id="enunciado"></h2>
+            <button class="btn-ouvir" id="btn-ouvir" aria-label="Ouvir a pergunta" title="Ouvir a pergunta">🔊</button>
+          </div>
+          <div class="midia" id="midia"></div>
+          <div class="widget" id="widget"></div>
+        </div>
+
+        <div class="opcoes" id="opcoes" role="group" aria-label="Respostas"></div>
+
+        <div class="mascote-linha rodape-fala">
+          <div class="mascote" id="mascote" aria-hidden="true">🦉</div>
+          <div class="balao" id="balao" role="status" aria-live="polite"></div>
+          <button class="btn btn-grande btn-verde btn-proxima" id="btn-proxima" hidden>Continuar <span class="ic">➜</span></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FINAL ========== -->
+    <section id="tela-final" class="tela" aria-labelledby="titulo-final">
+      <div class="inicio-card final-card">
+        <div class="medalha" aria-hidden="true">🏆</div>
+        <h1 id="titulo-final">Parabéns, explorador!</h1>
+        <p class="sub">Você completou a aventura e ajudou a Lulu em todos os mundos!</p>
+        <div class="estrelas-final" id="estrelas-final" aria-hidden="true"></div>
+        <p class="total-final" id="total-final"></p>
+        <div class="botoes-inicio">
+          <button class="btn btn-grande btn-verde" id="btn-jogar-de-novo">🔁 Jogar de novo</button>
+          <button class="btn btn-medio btn-claro" data-acao="mapa">🗺️ Voltar ao mapa</button>
+        </div>
+        <button class="link-adulto" id="btn-adulto-final">👩‍🏫 Área do adulto</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Fim de mundo -->
+  <div class="modal" id="modal-mundo" hidden>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="mm-titulo">
+      <div class="mm-emoji" id="mm-emoji" aria-hidden="true">🎉</div>
+      <h2 id="mm-titulo"></h2>
+      <p id="mm-texto"></p>
+      <div class="mm-estrelas" id="mm-estrelas" aria-hidden="true"></div>
+      <button class="btn btn-grande btn-verde" id="mm-ok">Voltar ao mapa ➜</button>
+    </div>
+  </div>
+
+  <!-- Área do adulto -->
+  <div class="modal" id="modal-adulto" hidden>
+    <div class="modal-card adulto" role="dialog" aria-modal="true" aria-labelledby="ad-titulo">
+      <h2 id="ad-titulo">👩‍🏫 Área do adulto</h2>
+      <p class="peq">Resumo da brincadeira (salvo só neste navegador). “De primeira” = respondeu certo na primeira tentativa.</p>
+      <div id="ad-corpo"></div>
+      <div class="ad-botoes">
+        <button class="btn btn-medio btn-claro" id="ad-fechar">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confete" aria-hidden="true"></div>
+  <script src="questions.js?v=3"></script>
+  <script src="game.js?v=3"></script>
+</body>
+</html>
